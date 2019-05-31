@@ -1,0 +1,26 @@
+version: '3.5'
+services:
+  FrontEnd:
+    container_name: 'BEFront'
+    image: nginx:latest
+    volumes: 
+      - ./build:/usr/share/nginx/html
+    ports:
+      - 10000:80
+    links: 
+      - BackEnd
+    restart: always
+
+  BackEnd:
+    build:
+      context: ./
+      dockerfile: Dockerfile.back
+    container_name: 'BEBack'
+    image: bill-expense-back
+    volumes: 
+      - ./server:/server
+      - ./package.json:/server
+    command: ['node', '/server/server.js']
+    ports: 
+      - 10001:3000
+    restart: always
