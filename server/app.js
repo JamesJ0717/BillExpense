@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const path = require("path");
 
+const billRoute = require("./api/Bill");
+
 // console output color coded for developing
 app.use(morgan("dev"));
 
@@ -29,12 +31,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/bills", (req, res, next) => {
-  res.status(200).sendFile("bills.json", { root: "./" });
-});
-app.use("/hi", (req, res, next) => {
-  res.json({ message: "Hi", statusCode: 200 });
-});
+app.use("/Bill", billRoute);
+
 app.use("/", (req, res, next) => {
   res.json({ message: "Get Out!" });
 });

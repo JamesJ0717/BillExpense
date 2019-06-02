@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Axios from "axios";
 
+import AddBill from "./AddBill";
+
 class Bill extends Component {
   state = {
     bills: []
   };
 
   componentDidMount() {
-    Axios.get("http://192.168.0.3:3001/bills")
+    Axios.get("http://67.242.41.128:3001/Bill")
       .then(res => {
         console.log(res.data);
         this.setState({ bills: res.data });
@@ -17,11 +19,20 @@ class Bill extends Component {
       });
   }
 
+  rowStyle = () => {
+    return {
+      textAlign: "right",
+      border: "1px #ccc dotted",
+      paddign: "0px"
+    };
+  };
+
   getStyle = () => {
     return {
       background: "#f4f4f4",
       padding: "5px",
-      borderBottom: "1px #ccc dotted"
+      borderBottom: "1px #ccc dotted",
+      width: "100%"
     };
   };
 
@@ -29,9 +40,9 @@ class Bill extends Component {
     var bills = this.state.bills.map(bill => (
       <tbody key={bill.id} style={this.getStyle()}>
         <tr>
-          <td>{bill.title}</td>
-          <td>{bill.amount}</td>
-          <td>{bill.due}</td>
+          <td style={this.rowStyle()}>{bill.title}</td>
+          <td style={this.rowStyle()}>{bill.amount}</td>
+          <td style={this.rowStyle()}>{bill.due}</td>
         </tr>
       </tbody>
     ));
@@ -51,6 +62,7 @@ class Bill extends Component {
           </tbody>
           {this.showBills()}
         </table>
+        <AddBill />
       </div>
     );
   }
