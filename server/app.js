@@ -31,9 +31,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/Bill", billRoute);
+app.use("/bill", billRoute);
 
 app.use("/", (req, res, next) => {
-  res.json({ message: "Get Out!" });
+  res.json({
+    message: "Get Out!"
+  });
 });
-module.exports = { app };
+module.exports = {
+  app
+};

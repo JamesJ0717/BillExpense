@@ -1,0 +1,43 @@
+.newBill {
+    display: block;
+    font-size: 12pt;
+    align-content: left;
+}
+
+.billForm {
+    text-align: center;
+}
+
+.billTable {
+    background: '#f4f4f4';
+    padding: '5px';
+    border-bottom: '1px #ccc dotted';
+    width: 100%;
+}
+
+.billTableHeader {
+    font-size: 16pt;
+    background: '#f4f4f4';
+    padding: '5px';
+    border: '1px #ccc dotted';
+}
+
+.billTableContent {}
+
+.billTableContentRow {
+    background: '#f4f4f4';
+    border: 2px #ccc dotted;
+}
+
+.billTableContentRowAmt {
+    background: '#f4f4f4';
+    border: 2px #ccc dotted;
+    text-align: right;
+    padding-right: 5px
+}
+
+.billTableContentRowDate {
+    background: '#f4f4f4';
+    border: 2px #ccc dotted;
+    text-align: right;
+}

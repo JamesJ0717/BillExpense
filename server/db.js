@@ -12,29 +12,31 @@ class Db {
         CREATE TABLE IF NOT EXISTS bills (
             id integer PRIMARY KEY,
             title text,
-            amount float,
-            due date
+            amount money,
+            due date,
+            repeat boolean,
+            dueNumber number
         )`;
     return this.db.run(sql);
   }
 
   addBill(bill, callback) {
     return (
-      this.db.run("INSERT INTO bills (title, amount, due) VALUES (?, ?, ?)"),
-      bill,
-      err => {
-        callback(err);
-      }
-    );
+      this.db.run("INSERT INTO bills (title, amount, due, repeat, dueNumber) VALUES (?, ?, ?, ?, ?)",
+        bill,
+        (err) => {
+          callback(err);
+        }
+      ));
   }
 
   getBills(callback) {
     return (
-      this.db.run("SELECT * FROM bills"),
-      (err, rows) => {
-        callback(err, rows);
-      }
-    );
+      this.db.all("SELECT * FROM bills",
+        (err, rows) => {
+          callback(err, rows);
+        }
+      ));
   }
 }
 
